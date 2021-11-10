@@ -3,13 +3,30 @@ import face_recognition
 import cv2
 import os 
 import numpy as np
+import tkinter
+import cv2
+import numpy as np
+from tkinter import *
+from PIL import Image
+from PIL import ImageTk
 
-
+#face_recognition
 path = 'Referencias imagenes'
 imagenes = []
 classNames = []
 myList = os.listdir(path)
 print(myList)
+cap = None
+root = Tk()
+lblVideo = Label(root)
+infoTextoLBL = tkinter.Text(root)
+escanearTexto = tkinter.StringVar()
+
+#gui
+
+
+
+
 
 '''
 rostroLoc = face_recognition.face_locations(imgHouse)[0]
