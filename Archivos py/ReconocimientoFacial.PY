@@ -3,7 +3,7 @@ import cv2.cv2
 from funciones import *
 def IniciarCamara():
     root.iconify()
-    cap = cv2.VideoCapture(2)
+    cap = cv2.VideoCapture(0)
     while True:
         success, img = cap.read()
         imgS = cv2.resize(img, (0,0), None, 0.25, 0.25)
@@ -18,7 +18,7 @@ def IniciarCamara():
                 name = classNames[matchIndex].upper()
                 print(name)
                 #sql parte
-                #datosBuscados(name)
+                datosBuscados(name)
                 #sql fin
                 y1,x2,y2,x1 = rostroLoc
                 y1,x2,y2,x1 = y1*4,x2*4,y2*4,x1*4

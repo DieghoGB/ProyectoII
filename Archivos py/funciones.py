@@ -1,5 +1,5 @@
 import cv2.cv2
-import mysql
+import mysql.connector
 
 from variables_imports import *
 
@@ -16,7 +16,7 @@ def datosBuscados(id,):
             )
         cursor = conexion.cursor()
         print("Obteniendo datos...")
-        sql_select_Query = "select * from datosbuscados where id = %s"
+        sql_select_Query = "select * from datosbuscados where rut = %s"
         # asignar variable en la consulta
         cursor.execute(sql_select_Query, (id,))
         # obtener resultado
