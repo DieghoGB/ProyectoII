@@ -1,0 +1,25 @@
+from tkinter import *
+
+def finprograma():
+    print("El programa ha finalizado")
+    exit()
+def Abrircam():
+    ventanacam = Tk()
+    canvas2 = Canvas(ventana, width=700, height=400)
+    canvas2.pack()
+    img2 = PhotoImage(file="focus_1.ppm")
+    canvas2.create_image(0, 0, anchor=NW, image=img2)
+    ventanacam.geometry("600x400")
+    ventanacam.title("Camara")
+ventana=Tk()
+canvas = Canvas(ventana, width = 700, height = 400)
+canvas.pack()      
+img = PhotoImage(file="ciber2.ppm")
+canvas.create_image(0,0, anchor=NW, image=img)
+ventana.geometry("600x400")
+ventana.title("Reconocimiento Facial")
+botonEscanear=Button(ventana,text="Comenzar Escaneo",command=Abrircam)
+botonEscanear.place(x=200,y=175)
+botonSalir=Button(ventana,text="Salir",command=finprograma)
+botonSalir.place(x=350,y=175)
+ventana.mainloop()

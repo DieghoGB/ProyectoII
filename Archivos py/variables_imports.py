@@ -1,7 +1,6 @@
-import mysql.connector
 import face_recognition
 import cv2
-import os 
+import os
 import numpy as np
 import tkinter
 import cv2
@@ -18,6 +17,8 @@ myList = os.listdir(path)
 print(myList)
 cap = None
 root = Tk()
+root.geometry("1920x1080")
+root.title("Reconocimiento Facial")
 lblVideo = Label(root)
 infoTextoLBL = tkinter.Text(root)
 escanearTexto = tkinter.StringVar()

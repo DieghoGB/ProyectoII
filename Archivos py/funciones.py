@@ -1,3 +1,6 @@
+import cv2.cv2
+import mysql
+
 from variables_imports import *
 
 
@@ -25,7 +28,7 @@ def datosBuscados(id,):
 
     except mysql.connector.Error as e:
         print("Error al obtener el registro de la tabla MySQL")
-        
+
     finally:
             if conexion.is_connected():
                 conexion.close()
@@ -67,12 +70,14 @@ def visualizar():
     if cap is not None:
         ret, frame = cap.read()
         if ret == True:
-            frame = cv2.resize(frame, (600,600), None, 0.25, 0.25)
+            frame = cv2.resize(frame, (900,900), None, 0.25, 0.25)
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             im = Image.fromarray(frame)
             img = ImageTk.PhotoImage(image=im)
+            imgfocus = cv2.cv2.imread('focus.png',0)
             lblVideo.configure(image=img)
             lblVideo.image = img
+            cv2.imshow('image',imgfocus)
             lblVideo.after(10, visualizar)
 
             
