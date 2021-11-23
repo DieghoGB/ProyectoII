@@ -25,8 +25,6 @@ def IniciarCamara():
                 cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
                 cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
                 cv2.putText(img, name, (x1+6, y2-6), cv2.FONT_HERSHEY_COMPLEX, 1 , (255,255,255), 2)
-        cv2.rectangle(img, (150, 50), (500, 400), (0, 0, 0), thickness=3)
-        cv2.putText(img, 'Posicione su Rostro', (150,40), cv2.FONT_HERSHEY_TRIPLEX, 1.0, (255,255,255), 3)
         cv2.imshow('Reconocimiento Facial', img)
 
 
