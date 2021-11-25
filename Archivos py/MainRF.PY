@@ -1,8 +1,8 @@
-import cv2.cv2
 
 from funciones import *
 def IniciarCamara():
     root.iconify()
+    #si ocurre un problema con el el resize en el codigo, cambiar el numero de la camara
     cap = cv2.VideoCapture(0)
     while True:
         success, img = cap.read()
@@ -17,7 +17,15 @@ def IniciarCamara():
             if matches[matchIndex]:
                 name = classNames[matchIndex].upper()
                 print(name)
-                #sql parte
+                '''''
+                ________________________________________
+                |                                      |
+                |Poner en comentario las partes del sql|
+                |______________________________________|
+                 '''''
+                #sql parte 
+                
+
                 datosBuscados(name)
                 #sql fin
                 y1,x2,y2,x1 = rostroLoc
@@ -25,6 +33,15 @@ def IniciarCamara():
                 cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
                 cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
                 cv2.putText(img, name, (x1+6, y2-6), cv2.FONT_HERSHEY_COMPLEX, 1 , (255,255,255), 2)
+            else:
+                texto='No registrado'
+                y1,x2,y2,x1 = rostroLoc
+                y1,x2,y2,x1 = y1*4,x2*4,y2*4,x1*4
+                cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,0), 2)
+                cv2.rectangle(img, (x1,y2-35), (x2,y2), (0,255,0), cv2.FILLED)
+                cv2.putText(img, texto, (x1+6, y2-6), cv2.FONT_HERSHEY_COMPLEX, 1 , (255,255,255), 2)
+        cv2.rectangle(img, (150, 50), (500, 400), (0, 0, 0), thickness=3)
+        cv2.putText(img, 'Posicione su Rostro', (150,40), cv2.FONT_HERSHEY_TRIPLEX, 1.0, (255,255,255), 3)
         cv2.imshow('Reconocimiento Facial', img)
 
 
@@ -46,6 +63,8 @@ root.geometry("600x400")
 root.title("Reconocimiento Facial")
 botonEscanear=Button(root,text="Comenzar Escaneo",command=IniciarCamara)
 botonEscanear.place(x=200,y=175)
+botonRegistrar=Button(root,text="Registrar Persona",command=ingresarPersona)
+botonRegistrar.place(x=200,y=205)
 botonSalir=Button(root,text="Salir",command=finprograma)
-botonSalir.place(x=350,y=175)
+botonSalir.place(x=200,y=235)
 root.mainloop()

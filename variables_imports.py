@@ -4,8 +4,10 @@ import os
 import numpy as np
 import tkinter
 import cv2
+
 import numpy as np
 from tkinter import *
+import mysql.connector
 from PIL import Image
 from PIL import ImageTk
 
@@ -23,8 +25,14 @@ lblVideo = Label(root)
 infoTextoLBL = tkinter.Text(root)
 escanearTexto = tkinter.StringVar()
 
-#gui
-
+#sql
+conexion = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        passwd='n1k_lh345',
+        database='buscados'
+        )
+cursor = conexion.cursor()
 
 
 

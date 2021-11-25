@@ -5,7 +5,8 @@ import numpy as np
 import tkinter
 import cv2
 import numpy as np
-from tkinter import *
+from tkinter import * 
+import mysql.connector
 from PIL import Image
 from PIL import ImageTk
 
@@ -22,22 +23,28 @@ root.title("Reconocimiento Facial")
 lblVideo = Label(root)
 infoTextoLBL = tkinter.Text(root)
 escanearTexto = tkinter.StringVar()
+#sql parte
+''''
+________________________________________
+|                                      |
+|Poner en comentario las partes del sql|
+|______________________________________|
+'''''
+conexion = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        passwd='n1k_lh345',
+        database='buscados'
+            )
+cursor = conexion.cursor()
 
-#gui
 
-
-
-
-
-'''
-rostroLoc = face_recognition.face_locations(imgHouse)[0]
-encodeHouse = face_recognition.face_encodings(imgHouse)[0]
-cv2.rectangle(imgHouse, (rostroLoc[3],rostroLoc[0]), (rostroLoc[1],rostroLoc[2]), (255, 0, 255), 2)
-
-rsotroLocTest = face_recognition.face_locations(imgTest)[0]
-encodeTest = face_recognition.face_encodings(imgTest)[0]
-cv2.rectangle(imgTest, (rsotroLocTest[3],rsotroLocTest[0]), (rsotroLocTest[1],rsotroLocTest[2]), (255, 0, 255), 2)
-
-resultados = face_recognition.compare_faces([encodeHouse], encodeTest)
-distanciaRostro = face_recognition.face_distance([encodeHouse], encodeTest)
-'''
+sql_select_Query = "select * from datosbuscados "
+        # asignar variable en la consulta
+cursor.execute(sql_select_Query)
+        # obtener resultado
+registro = cursor.fetchall()
+for columna in registro:
+    print("rut= ",  columna[0])
+    print("nombre= ", columna[1] , "\n")
+#fin sql    

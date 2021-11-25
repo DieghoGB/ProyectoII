@@ -1,20 +1,18 @@
 import cv2.cv2
 import mysql.connector
-
 from variables_imports import *
 
 
     
 #sql
+''''
+________________________________________
+|                                      |
+|Poner en comentario las partes del sql|
+|______________________________________|
+'''''
 def datosBuscados(id,):
-    try:
-        conexion = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        passwd='n1k_lh345',
-        database='buscados'
-            )
-        cursor = conexion.cursor()
+    try:        
         print("Obteniendo datos...")
         sql_select_Query = "select * from datosbuscados where rut = %s"
         # asignar variable en la consulta
@@ -25,7 +23,6 @@ def datosBuscados(id,):
             print("id= ", columna[0])
             print("nombre= ", columna[1] , "\n")
 
-
     except mysql.connector.Error as e:
         print("Error al obtener el registro de la tabla MySQL")
 
@@ -34,6 +31,64 @@ def datosBuscados(id,):
                 conexion.close()
                 cursor.close()
                 print("La conexion MySQL se ha cerrado")
+
+def ingresarPersona():
+    ventana= Tk() 
+    ventana.geometry("800x600") 
+    ventana.title(" Registrar persona ")
+    #registrar rut
+    label1 = tkinter.Label(ventana, text="rut(sin guion):")
+    label1.grid(row=3,column=1)
+    #escribir apellido
+    texto1 = tkinter.Text(ventana, height=1, width=10, bg='white')
+    texto1.grid(row=3,column=2)
+    #registrar nombre
+    label2 = tkinter.Label(ventana, text="nombre y apellido:")
+    label2.grid(row=4,column=1)
+    #escribir nombre
+    texto2 = tkinter.Text(ventana, height=1, width=10, bg='white')
+    texto2.grid(row=4,column=2)
+    
+    #verificacion de datos
+    my_str = tkinter.StringVar()
+    l5 = tkinter.Label(ventana,  textvariable=my_str, width=10 )  
+    l5.grid(row=3,column=3) 
+    my_str.set("Output")    
+    #boton aceptar
+    aceptarBoton= Button(ventana, text="Subir", command=lambda:subirPersona())
+    aceptarBoton.grid(row=5,column=2)
+    
+    def subirPersona():
+        flag_validation = True #para verificar datos
+        rut=texto1.get("1.0",END) # lee el rut
+        nombre=texto2.get("1.0",END) # lee el nombre
+        
+        #verifica el tamanho del nombre y el rut
+        if (len(rut)<2 or len(nombre)<2):
+            flag_validation= False
+        try:
+            val = int(rut) # verifica que se ingresen numeros
+        except:
+            flag_validation=False
+        if(flag_validation):
+            #parte de sql
+            query ="INSERT INTO datosbuscados (rut, nombre) VALUES (%s, %s)"
+            datos= (rut,nombre)
+            
+            id=cursor.execute(query,datos) #insertar datos a la BD  
+            #se suben los datos a la BD
+            conexion.commit()
+            print(id)       
+            print("se ingreso el nombre: " , nombre)
+            print("se ingreso el rut: ", rut)
+            
+        else:
+            l5.config(fg='red')   # foreground color
+            l5.config(bg='yellow') # background color
+            my_str.set("check inputs.")
+        #insert into datosbuscados values('1111111','Hector Ossandon');
+
+
 #fin sql
 
 #lista de rostros
