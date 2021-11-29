@@ -1,7 +1,11 @@
 import cv2.cv2
 import mysql.connector
 from variables_imports import *
-
+from tkinter import *
+from PIL import Image
+from PIL import ImageTk
+import cv2
+import imutils
 
     
 #sql
@@ -70,26 +74,52 @@ def ingresarPersona():
             val = int(rut) # verifica que se ingresen numeros
         except:
             flag_validation=False
+            
         if(flag_validation):
+            
             #parte de sql
             query ="INSERT INTO datosbuscados (rut, nombre) VALUES (%s, %s)"
             datos= (rut,nombre)
             
             id=cursor.execute(query,datos) #insertar datos a la BD  
             #se suben los datos a la BD
-            conexion.commit()
-            print(id)       
+            sacarFoto(rut)       
             print("se ingreso el nombre: " , nombre)
             print("se ingreso el rut: ", rut)
             
+            
         else:
-            l5.config(fg='red')   # foreground color
+            l5.config(fg='green')   # foreground color
             l5.config(bg='yellow') # background color
-            my_str.set("check inputs.")
+            my_str.set('Revise los datos')
         #insert into datosbuscados values('1111111','Hector Ossandon');
 
 
 #fin sql
+
+def sacarFoto(rut):
+    cap = cv2.VideoCapture(0)
+    flag = cap.isOpened()
+    while(flag):
+        success, img = cap.read()
+        imgS = cv2.resize(img, (0,0), None, 0.25, 0.25)
+        imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+        cv2.imshow("Capture_Paizhao",img)
+        k = cv2.waitKey(1) & 0xFF
+        
+        if k == ord ('s'): #Presione la tecla s para ingresar a la siguiente operación de guardado de imágenes
+            
+            cv2.imwrite("imagen"  + ".jpg", imgS)
+            print("-------------------------")
+            #conexion.comit()
+        elif k == ord ('q'): #Presione la tecla q, el programa sale
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+    
+
+
+
 
 #lista de rostros
 def encontrarEncodigns(imagenes):
@@ -111,4 +141,3 @@ print(classNames)
 encodeListaConocido = encontrarEncodigns(imagenes)
 print('Encoding completado...')
 #fin separar extension
-

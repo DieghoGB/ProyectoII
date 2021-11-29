@@ -9,6 +9,14 @@ from tkinter import *
 import mysql.connector
 from PIL import Image
 from PIL import ImageTk
+from tkinter import *
+from PIL import Image
+from PIL import ImageTk
+import cv2
+import imutils
+
+
+
 
 #face_recognition
 path = 'Referencias imagenes'
