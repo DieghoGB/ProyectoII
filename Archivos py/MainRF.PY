@@ -24,8 +24,6 @@ def IniciarCamara():
                 |______________________________________|
                  '''''
                 #sql parte 
-                
-
                 datosBuscados(name)
                 #sql fin
                 y1,x2,y2,x1 = rostroLoc
@@ -51,7 +49,7 @@ def IniciarCamara():
     cv2.destroyAllWindows()
 
     cv2.waitKey(1)
-def finprograma():
+def finprograma(): 
     print("El programa ha finalizado")
     exit()
 
@@ -62,9 +60,9 @@ canvas.create_image(0,0, anchor=NW, image=img2)
 root.geometry("600x400")
 root.title("Reconocimiento Facial")
 botonEscanear=Button(root,text="Comenzar Escaneo",command=IniciarCamara)
-botonEscanear.place(x=200,y=175)
+botonEscanear.place(x=250,y=165)
 botonRegistrar=Button(root,text="Registrar Persona",command=ingresarPersona)
-botonRegistrar.place(x=200,y=205)
+botonRegistrar.place(x=254,y=195)
 botonSalir=Button(root,text="Salir",command=finprograma)
-botonSalir.place(x=200,y=235)
+botonSalir.place(x=290,y=225)
 root.mainloop()

@@ -44,15 +44,20 @@ conexion = mysql.connector.connect(
         passwd='n1k_lh345',
         database='buscados'
             )
-cursor = conexion.cursor()
+cursor = conexion.cursor(buffered=True)
 
 
-sql_select_Query = "select * from datosbuscados "
+'''sql_select_Query = "select * from datosbuscados "
         # asignar variable en la consulta
 cursor.execute(sql_select_Query)
         # obtener resultado
 registro = cursor.fetchall()
 for columna in registro:
     print("rut= ",  columna[0])
-    print("nombre= ", columna[1] , "\n")
+    print("nombre= ", columna[1] )'''
 #fin sql    
+
+
+
+
+
