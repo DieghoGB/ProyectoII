@@ -104,12 +104,16 @@ def sacarFoto(rut):
         success, img = cap.read()
         imgS = cv2.resize(img, (0,0), None, 0.25, 0.25)
         imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
-        cv2.imshow("Capture_Paizhao",img)
+        cv2.imshow("Presione S para guardar la imagen, q para cerrar el programa",img)
         k = cv2.waitKey(1) & 0xFF
         
         if k == ord ('s'): #Presione la tecla s para ingresar a la siguiente operación de guardado de imágenes
-            
-            cv2.imwrite("imagen"  + ".jpg", imgS)
+            a=int(rut)
+            cv2.imwrite(path + '/' + str(a) + '.jpg' ,imgS)
+            print("Imagen guardada")
+            if not (path + '/' + str(a) + '.jpg' ,imgS):
+                 print('Imagen no se pudo guardar')
+
             print("-------------------------")
             #conexion.comit()
         elif k == ord ('q'): #Presione la tecla q, el programa sale
