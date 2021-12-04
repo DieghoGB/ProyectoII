@@ -10,7 +10,20 @@ from PIL import Image
 from PIL import ImageTk
 import mysql
 import mysql.connector
-
+import face_recognition
+import cv2
+import os
+import numpy as np
+import tkinter
+import cv2
+import numpy as np
+from tkinter import *
+from PIL import Image
+from PIL import ImageTk
+import mysql
+import mysql.connector
+from tkinter.messagebox import *
+from tkinter.constants import BOTTOM, CENTER, LEFT, TOP
 
 #face_recognition
 path = 'Referencias imagenes'

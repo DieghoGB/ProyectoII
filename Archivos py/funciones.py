@@ -120,14 +120,13 @@ def ingresarPersona():
                     sacarFoto(rut)
                 
             else:
-                falloL = Label(ventana,text='Existe una persona registrada con ese rut en la BD')
-                falloL.place(x=60,y=100)
+                
+                showinfo("Error","Existe una persona registrada con ese rut en la BD!!!")
 
             
             
         else:
-            falloL = Label(ventana,text="Ingrese correctamente los datos!")
-            falloL.place(x=90,y=100)
+            showinfo("Error","Campos en blanco!!!")
         #insert into datosbuscados values('1111111','Hector Ossandon');
 
 

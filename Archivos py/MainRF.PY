@@ -108,20 +108,30 @@ def finprograma():
     print("El programa ha finalizado")
     exit()
     
-
-canvas = Canvas(root, width = 700, height = 400)
-canvas.pack()
-img2 = PhotoImage(file="ciber2.ppm")
-canvas.create_image(0,0, anchor=NW, image=img2)
-root.geometry("600x400")
-root.title("Reconocimiento Facial")
-botonEscanear=Button(root,text="Comenzar Escaneo",command=IniciarCamara)
-botonEscanear.place(x=250,y=165)
-botonRegistrar=Button(root,text="Registrar Persona",command=ingresarPersona)
-botonRegistrar.place(x=254,y=195)
-botonSalir=Button(root,text="Salir",command=finprograma)
-botonSalir.place(x=290,y=225)
-root.mainloop()
+def iniciarPrograma(usuario):
+    canvas = Canvas(root, width = 700, height = 400)
+    canvas.pack()
+    consultaBD = "select * from PDI where usuario = %s"
+            # asignar variable en la consulta
+    cursor.execute(consultaBD, (usuario,))
+ 
+    registro = cursor.fetchall()
+    for columna in registro:
+        print(columna)
+    usuario = "bienvenido " + str(columna[0])
+    
+    img2 = PhotoImage(file="ciber2.ppm")
+    canvas.create_image(0,0, anchor=NW, image=img2)
+    root.geometry("600x400")
+    root.title(usuario)
+      
+    botonEscanear=Button(root,text="Comenzar Escaneo",command=IniciarCamara)
+    botonEscanear.place(x=250,y=165)
+    botonRegistrar=Button(root,text="Registrar Persona",command=ingresarPersona)
+    botonRegistrar.place(x=254,y=195)
+    botonSalir=Button(root,text="Salir",command=finprograma)
+    botonSalir.place(x=290,y=225)
+    root.mainloop()
 
 
 
